@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>HSH Admin</title>
+		<link href="/css/style1.css?version={{version}}" rel="stylesheet" type="text/css" />
+		<link href="/css/form.css?version={{version}}" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/css/image_upload/tinyImgUpload.css" />
+		<style type="text/css">
+			html{background:url(/images/bg.png)}
+		</style>
+		<!-- 多图片上传 -->
+	</head>
+<body>
+		<div class="place">
+			<span>Location：</span>
+			<ul class="placeul">
+				<li>
+					<a href="/hsh_backstage/index/" style="color: #056dae;">Home</a>
+				</li>
+				<li>Current System</li>
+				<li>Add</li>
+			</ul>
+		</div>
+		<div class="formbody">
+			<div class="formtitle"><span>添加产品信息</span></div>
+			
+			<ul class="forminfo">
+				<li>
+				    <label>产品名称<font class="color_red">*</font></label>
+					<input id="product_name" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px;">产品完整名称<font class="color_red">*</font></label>
+					<input id="product_long_name" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px;">产品类型<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="hsh_category_id">
+						<option value="1">Solution</option>
+						<option value="2">Storage</option>
+						<option value="3">Server</option>
+						<option value="4">Switch</option>
+						<option value="5">HNAS</option>
+						<option value="6">Software</option>
+						<option value="7">Miscellaneous Systems</option>
+					</select>
+					</label>
+				</li>
+				<li>
+					<label>是否显示<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="product_isshow">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+					</label>
+					
+					<label style="padding-left:185px;">是否过期<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="product_eol">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+					</label>
+				</li>
+				<li>
+					<label>Code Name</label>
+					<input id="code_name" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">GA Date</label>
+					<input id="ga_date" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>System Architecture</label>
+					<input id="system_architecture" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Max Cache</label>
+					<input id="max_cache" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<!-- 上传图片 -->
+				<!-- <li>&nbsp;</li>
+				<li>
+					 <label>选择图片文件<font class="color_red">*</font></label>
+					 <input class="file" type="file" id="file" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+				</li> -->
+				<div id="upload">
+
+				</div>
+				<button id="submit" class="btn">上传图片</button>
+				
+				<li>&nbsp;</li>
+				<li><strong>Data Sheet(Block Module)</strong></li>
+				<li>
+					<label>Hight</label>
+					<input id="hight" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Bandwidth</label>
+					<input id="bandwidth" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 190px;">Host Interfaces(maximum)</label>
+					<input id="host_interfaces" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Internal Raw Capacity</label>
+					<input id="internal_raw_capacity" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 190px;">Flash Storage Options</label>
+					<input id="flash_storage_options" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 190px;">Hard Disk Drive Options</label>
+					<input id="hard_disk_drive_options" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 250px;">Minimum to Maximum Hard Drices</label>
+					<input id="minimum_to_maximum_hard_drices" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 220px;">Maximum Number Flash Drives</label>
+					<input id="maximum_number_flash_drives" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 250px;">Maximum Number Flash Drives(FMD)</label>
+					<input id="maximum_number_flash_drives_fmd" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="width: 220px; padding-left:65px">Back-End Disk Interface</label>
+					<input id="back_End_disk_interface" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>RAID Configurations</label>
+					<input id="raid_configurations" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Cache Options</label>
+					<input id="cache_options" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>Maximum LUNs</label>
+					<input id="maximum_luns" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px" >Volume Size</label>
+					<input id="volume_size" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					
+					<label style="width: 180px;">Virtual Storage Machines</label>
+					<input id="virtual_storage_machines" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">High Availability</label>
+					<input id="high_availability" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Environment</strong></li>
+				<li>
+				    <label>AC Power</label>
+					<input id="ac_power" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">PDU</label>
+					<input id="pdu" type="text" class="dfinput" style="float:left;"/>
+					
+				</li>
+				<li>
+					<label>Input Power</label>
+					<input id="input_power" type="text" class="dfinput" style="float:left;"/>
+					
+				    <label style="padding-left:65px">Temperature</label>
+					<input id="temperature" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>	
+					<label>Humidity</label>
+					<input id="humidity" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Altitude</label>
+					<input id="altitude" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Dimensions and Weights</strong></li>
+				<li>
+				    <label>Width(inch/mm)</label>
+					<input id="width_inch" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Depth(inch/mm)</label>
+					<input id="depth_inch" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+				    <label>Height(inch/mm)</label>
+					<input id="height_inch" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 200px;">Max. System Weight(lbs/kg)</label>
+					<input id="system_weight" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Clearance and Service Access</strong></li>
+				<li>
+				    <label>Front(mm)</label>
+					<input id="front" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Rear(mm)</label>
+					<input id="rear" type="text" class="dfinput" style="float:left;"/>
+				</li>
+
+				<input type="hidden" id="product_id" />		
+				<li>&nbsp;</li>
+				<li>
+				    <input type="button" class="btn" value="确认保存" onclick="AddCurrentSystem.submit()"/>
+				</li>
+				<li>&nbsp;</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/backstage/current_system/add.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+		<!-- 多图片上传 -->
+		<script src="/js/image_upload/tinyImgUpload.js"></script>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth*0.1+'px';
+			
+			var options = {
+			    path: '/hsh_backstage/saveCurrentSystemImage/',
+			    onSuccess: function (res) {
+			        var json = eval('(' + res + ')');
+			        var product_id = json.product_id;
+                    $('#product_id').val(product_id);
+                    layer.msg('图片上传成功!');
+			    },
+			    onFailure: function (res) {
+			    	layer.msg('图片上传失败!');
+			    }
+			}
+			var upload = tinyImgUpload('#upload', options);
+			document.getElementById('submit').onclick = function (e) {
+			    upload();
+			}
+		</script>
+	</body>
+</html>

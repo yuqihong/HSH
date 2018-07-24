@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="slick, flat, dashboard, bootstrap, admin, template, theme, responsive, fluid, retina">
+    <link rel="shortcut icon" href="javascript:;" type="image/png">
+
+    <title>HSH</title>
+
+    <!--switchery-->
+    <link href="/css/basics/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!--common style-->
+    <link href="/css/basics/style.css" rel="stylesheet" />
+    <link href="/css/basics/style-responsive.css" rel="stylesheet" />
+    <link id="skin" rel="stylesheet" />
+    
+</head>
+
+<body class="sticky-header">
+
+    <section>
+         <!-- sidebar left start-->
+        <div class="sidebar-left">
+            <!--responsive view logo start-->
+            <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
+                <a href="/current_system/getCurrentSystemList/">
+                    <img src="/images/logo-icon.png" alt="">
+                    <span class="brand-name">HSH</span>
+                </a>
+            </div>
+            <!--responsive view logo end-->
+
+            <div class="sidebar-left-info">
+                 <!--sidebar nav start-->
+                <div class="sidebar-left-info">
+                                <!--sidebar nav start-->
+                                <div class="sidebar-left-info">
+                                	<!--sidebar nav start-->
+                                	<ul class="nav nav-pills nav-stacked side-navigation">
+                                		<li>
+                                			<h3 class="navigation-title">Menu</h3>
+                                		</li>
+                                		<li><a href="/home/"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                                		<li class="menu-list">
+                                			<a href=""><i class="fa fa-book"></i>  <span>Current System</span></a>
+                                			<ul class="child-list">
+                                				<li><a href="/current_system/getCurrentSystemList/">Current System List</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li class="menu-list">
+                                			<a href=""><i class="fa fa-book"></i>  <span>EOL System</span></a>
+                                			<ul class="child-list">
+                                				<li><a href="/eol_system/getEolSystemList/">Eol Show</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li class="menu-list nav-active">
+                                			<a href=""><i class="fa fa-laptop"></i>  <span>View</span></a>
+                                			<ul class="child-list">
+                                				<li class="active"><a href="/view_show/view_show/getViewShow/"> View Show</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li><a href="/hsh_backstage/main/" class="btn btn-success btn-sm ">Admin</a></li>
+                                	</ul>
+                                	<!--sidebar nav end-->
+                                </div>
+                                <!--sidebar nav end-->
+                 </div>
+                <!--sidebar nav end-->
+            </div>
+        </div>
+        <!-- sidebar left end-->
+
+
+        <!-- body content start-->
+        <div class="body-content" style="min-height: 1000px;">
+            <!-- header section start-->
+             <div class="header-section" id="oneShang">
+
+                <!--logo and logo icon start-->
+                <div class="logo dark-logo-bg hidden-xs hidden-sm" id="oneXia">
+                    <a href="/current_system/getCurrentSystemList/">
+                        <img src="#" alt="">
+                        <span class="brand-name">HITACHI HSH</span>
+                    </a>
+                </div>
+
+                <!--logo and logo icon end-->
+
+                
+                <div class="notification-wrap">
+                <div class="right-notification" >
+                    <ul class="notification-menu" style="margin-right: 40px;">
+                        <li>
+                            <form class="search-content" action="index.html" method="post">
+                                <input type="text" class="form-control" name="keyword" placeholder="Search...">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!--right notification end-->
+                </div>
+				<a class="toggle-btn"><i class="fa fa-outdent"></i></a>
+            </div>
+            <!-- header section end-->
+
+            <!-- page head start-->
+            <div class="page-head">
+                <h3 class="m-b-less">
+                    Different Theme Layouts
+                </h3>
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+                <div class="state-information">
+                    <ol class="breadcrumb m-b-less bg-less">
+                        <li><a href="/home/">Home</a></li>
+                        <li class="active">Different Theme Layouts</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page head end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h5>Layout Theme One</h5>
+                        <div class="d-theme">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-one.css')"><img src="/images/layout1.jpg" alt=""/></a>
+                        </div>
+                        <div class="text-center m-t-30">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-one.css')" class="btn btn-xs btn-info">View Demo</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h5>Layout Theme Two</h5>
+
+                        <div class="d-theme">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-two.css')"><img src="/images/layout2.jpg" alt=""/></a>
+                        </div>
+                        <div class="text-center m-t-30">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-two.css')" class="btn btn-xs btn-info">View Demo</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h5>Layout Theme Three</h5>
+
+                        <div class="d-theme">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-three.css')"><img src="/images/layout3.jpg" alt=""/></a>
+                        </div>
+                        <div class="text-center m-t-30">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-three.css')" class="btn btn-xs btn-info">View Demo</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h5>Layout Theme Four</h5>
+
+                        <div class="d-theme">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-four.css')"><img src="/images/layout4.jpg" alt=""/></a>
+                        </div>
+                        <div class="text-center m-t-30">
+                            <a href="#" onclick="changecss('/css/view_show/layout-theme-four.css')" class="btn btn-xs btn-info">View Demo</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+					<div class="col-md-3 col-sm-3 col-xs-6">
+                        <h5>Restore Default</h5>
+
+                        <div class="d-theme">
+                            <a href="#" onclick="changecss(' ')"><img src="/images/layout5.jpg" alt=""/></a>
+                        </div>
+                        <div class="text-center m-t-30">
+                            <a href="#" onclick="changecss(' ')" class="btn btn-xs btn-info">View Demo</a>
+                        </div>
+                    </div>
+				</div>
+            </div>
+            
+            <!--footer section start-->
+            <footer>
+                2017 &copy; Simon Yuan(simon.yuan@hds.com) Hitachi Data System.<br /> All rights reserved.
+            </footer>
+            <!--footer section end-->
+            <!--body wrapper end-->
+        </div>
+        <!-- body content end-->
+    </section>
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/js/basics/jquery-1.10.2.min.js"></script>
+
+<!--jquery-ui-->
+<script src="/js/basics/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+<script src="/js/basics/jquery-migrate.js"></script>
+<script src="/js/basics/bootstrap.min.js"></script>
+<script src="/js/basics/modernizr.min.js"></script>
+
+<!--Nice Scroll-->
+<script src="/js/basics/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--switchery-->
+<script src="/js/basics/switchery/switchery.min.js"></script>
+<script src="/js/basics/switchery/switchery-init.js"></script>
+
+<!--common scripts for all pages-->
+<script src="/js/basics/scripts.js"></script>
+
+<!-- view_show js -->
+</body>
+<script async src="/js/view_show/viewshow.js"></script>
+</html>

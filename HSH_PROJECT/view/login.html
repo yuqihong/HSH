@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>HSH Admin</title>
+      <link rel="stylesheet" type="text/css" href="/css/style_login.css" />
+      <script language="JavaScript" src="/js/jquery.js?version={{version}}"></script>
+	  <script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+	  <script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+	  <script type="text/javascript" src="/js/hsh/login.js?version={{version}}"></script>
+
+</head>
+<body>
+
+  <div id="clouds">
+	<div class="cloud x1"></div>
+	<!-- Time for multiple clouds to dance around -->
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
+
+ <div class="container">
+      <div id="login">
+        <form method="#" onsubmit="return false">
+          <fieldset class="clearfix">
+            <p><span class="fontawesome-user"></span><input id="user_name" type="text"  placeholder="请输入账号" /></p> 
+            <p><span class="fontawesome-lock"></span><input id="user_pass" type="password" placeholder="请输入密码" /></p>
+            <p><input type="submit" value="Sign In" onclick="Login.account()" /></p>
+          </fieldset>
+        </form>
+      </div> <!-- end login -->
+
+    </div>	
+</body>
+</html>

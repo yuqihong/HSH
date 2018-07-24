@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Mosaddek" />
+    <meta name="keyword" content="slick, flat, dashboard, bootstrap, admin, template, theme, responsive, fluid, retina" />
+
+    <title>HSH</title>
+    <!--switchery-->
+    <link href="/css/basics/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!--jquery-ui-->
+    <link href="/css/basics/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+    <link href="/css/basics/owl.carousel.css" rel="stylesheet" />
+
+    <!--common style-->
+    <link href="/css/basics/style.css" rel="stylesheet" />
+    <link href="/css/basics/style-responsive.css" rel="stylesheet" />
+	
+	<!-- adminLte-->
+	<!-- Theme style -->
+	<link rel="stylesheet" href="/css/basics/AdminLTE.min.css" />
+	<!-- Google Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+	<script src="/js/basics/jquery.min.js"></script>
+	<script src="/js/basics/adminlte.min.js"></script>
+	<link href="/css/hsh/main.css" rel="stylesheet" type="text/css" />
+	<link id="skin" rel="stylesheet" />
+	<style type="text/css">
+	.STYLE1 {
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+	td{
+		word-wrap:break-word;
+	}
+	</style>
+</head>
+<body class="sticky-header">
+
+    <section>
+        <!-- sidebar left start-->
+        <div class="sidebar-left">
+            <!--responsive view logo start-->
+            <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
+                <a href="/current_system/getCurrentSystemList/">
+                    <img src="/images/logo-icon.png" alt="">
+                    <span class="brand-name">HSH</span>
+                </a>
+            </div>
+            <!--responsive view logo end-->
+
+            <div class="sidebar-left-info">
+                 <!--sidebar nav start-->
+                <div class="sidebar-left-info">
+                                <!--sidebar nav start-->
+                                <div class="sidebar-left-info">
+                                	<!--sidebar nav start-->
+                                	<ul class="nav nav-pills nav-stacked side-navigation">
+                                		<li>
+                                			<h3 class="navigation-title">Menu</h3>
+                                		</li>
+                                		<!-- <li class="active"></li> -->
+                                		<li><a href="/home/"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                                		<li class="menu-list nav-active">
+                                			<a href=""><i class="fa fa-book"></i>  <span class="active">Current System</span></a>
+                                			<ul class="child-list">
+                                				<li class="active"><a href="/current_system/getCurrentSystemList/">Current System List</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li class="menu-list">
+                                			<a href=""><i class="fa fa-book"></i>  <span>EOL System</span></a>
+                                			<ul class="child-list">
+                                				<li><a href="/eol_system/getEolSystemList/">Eol Show</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li class="menu-list">
+                                			<a href=""><i class="fa fa-laptop"></i>  <span>View</span></a>
+                                			<ul class="child-list">
+                                				<li><a href="/view_show/view_show/getViewShow/"> View Show</a></li>
+                                			</ul>
+                                		</li>
+                                		
+                                		<li><a href="/hsh_backstage/main/" class="btn btn-success btn-sm ">Admin</a></li>
+                                	</ul>
+                                	<!--sidebar nav end-->
+                                </div>
+                                <!--sidebar nav end-->
+                 </div>
+                <!--sidebar nav end-->
+            </div>
+        </div>
+        <!-- sidebar left end-->
+
+
+        <!-- body content start-->
+        <div class="body-content" style="min-height: 1000px;">
+            
+            <!-- header section start-->
+            <div class="header-section" id="oneShang">
+
+                <!--logo and logo icon start-->
+                <div class="logo dark-logo-bg hidden-xs hidden-sm" id="oneXia">
+                    <a href="/current_system/getCurrentSystemList/">
+                        <img src="#" alt="">
+                        <span class="brand-name">HITACHI HSH</span>
+                    </a>
+                </div>
+
+                <!--logo and logo icon end-->
+
+                <!--toggle button start-->
+                <a class="toggle-btn"><i class="fa fa-outdent"></i></a>
+                <!--toggle button end-->
+                
+                <div class="notification-wrap">
+                <!--left notification start-->
+                <div class="left-notification">
+                
+                </div>
+                <!--left notification end-->
+
+
+                <!--right notification start-->
+                <div class="right-notification" >
+                    <ul class="notification-menu" style="margin-right: 40px;">
+                        <li>
+                            <form class="search-content" action="index.html" method="post">
+                                <input type="text" class="form-control" name="keyword" placeholder="Search..." />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!--right notification end-->
+                </div>
+
+            </div>
+            <!-- header section end-->
+            
+            
+		    <!-- page head start-->
+            <div class="page-head">
+            		<h3 class="m-b-less">
+            				Current System
+            		</h3>
+            		<!--<span class="sub-title">Welcome to Static Table</span>-->
+            		<div class="state-information">
+            				<ol class="breadcrumb m-b-less bg-less">
+            						<li><a href="/home/">Home</a></li>
+            						<li><a href="/current_system/getCurrentSystemList/">Current System</a></li>
+            						<li class="active">HomePage</li>
+            				</ol>
+            		</div>
+            </div>
+            <!-- page head end-->		
+			<!-- Content Wrapper. Contains page content -->
+			  <div class="content-wrapper" id="show_homepage">
+			  		
+			  </div>	
+			  
+			  	<!--footer section start-->
+	            <footer>
+	                2017 &copy; Simon Yuan(simon.yuan@hds.com) Hitachi Data System.<br /> All rights reserved.
+	            </footer>
+	            <!--footer section end-->
+        </div>
+        <!-- body content end-->
+    </section>
+
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/js/basics/jquery-1.10.2.min.js"></script>
+
+<!--jquery-ui-->
+<script src="/js/basics/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+<script src="/js/basics/jquery-migrate.js"></script>
+<script src="/js/basics/bootstrap.min.js"></script>
+<script src="/js/basics/modernizr.min.js"></script>
+
+<!--Nice Scroll-->
+<script src="/js/basics/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="/js/basics/slidebars.min.js"></script>
+
+
+<!--jquery countTo-->
+<script src="/js/basics/jquery.countTo.js"  type="text/javascript"></script>
+
+<!--common scripts for all pages-->
+<script src="/js/basics/scripts.js"></script>
+
+<!-- js -->
+<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
+<script src="/js/current_system/homepage.js"></script>
+<!-- view_show js -->
+<script src="/js/view_show/viewshow.js"></script>
+</body>
+</html>

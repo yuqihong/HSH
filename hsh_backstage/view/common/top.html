@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HSH Admin</title>
+<link href="/css/style1.css?version={{version}}" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="/js/jquery.js?version={{version}}"></script>
+<script type="text/javascript">
+$(function(){	
+	//顶部导航切换
+	$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})	
+})	
+</script>
+
+
+</head>
+
+<body style="background:#000;">
+    <div class="topleft">
+    	<a href="/current_system/getCurrentSystemList/" target="_parent"><img width="110" height="80" src="/images/hitachi.jpg" title="HSH界面展示"/></a>
+    </div>
+        
+    <div class="topright">    
+	    <div class="user">
+		    <span>{{request.session.user.user_name}}</span><i><a href="/loginOut/" target="_parent" style="color: #b8ceda">退出</a></i>
+	    </div>    
+    </div>
+</body>
+</html>

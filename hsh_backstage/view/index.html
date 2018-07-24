@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HSH</title>
+<link href="/css/style1.css?version={{version}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
+</head>
+
+<body>
+    <div class="mainindex" style="margin-left: 200px;">
+    <div class="welinfo">
+    <span><img src="/images/sun.png" alt="天气" /></span>
+    <b id='text'>Hi</b>
+    </div>
+    
+    <script>
+       var html="";
+       now = new Date(),hour = now.getHours() 
+       if(hour < 6){
+         html=",凌晨好！";
+       } else if (hour < 9){
+         html=",早上好！";
+       } else if (hour < 12){
+         html=",上午好！";
+       } else if (hour < 14){
+         html=",中午好！";
+       }else if (hour < 17){
+         html=",下午好！";
+       } else if (hour < 19){
+         html=",傍晚好！";
+       } else{
+         html=",晚上好！";
+       }
+       html+="欢迎使用HSH .";
+       html=document.getElementById("text").innerText+html;
+       document.getElementById("text").innerText=html;
+    </script>
+    </div>
+</body>
+</html>

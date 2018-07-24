@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HSH Admin</title>
+<link href="/css/demo.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/change_select.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/form.css?version={{version}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
+<script type="text/javascript" src="/js/backstage/current_system/select.js?version={{version}}"></script>
+<style>
+html{background:url(/images/bg.png)}
+.tablelist {
+	border: solid 1px #cbcbcb;
+	width: 100%;
+	clear: both;
+}
+
+footer {
+	align-content: center;
+	position: fixed;
+	background-color: rgba(43, 166, 166, 0.5);
+	color: #FFF;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+}
+}
+<style>
+		   html,body{height: 100%;}
+		  .red{background:red;}
+		  .green{background:green;}
+		  .rightinfo{padding:8px;}
+		  .tools{clear:both; height:35px;margin: 15px 0 25px 0;}
+		  .dfinput{width:240px; height:32px; line-height:32px; border-top:solid 1px #0f8b8d; border-left:solid 1px #0f8b8d; border-right:solid 1px #0f8b8d; border-bottom:solid 1px #0f8b8d; background:url(/images/inputbg.gif) repeat-x; text-indent:10px;}
+		  .btn{width:137px;height:35px; background:#0f8b8d; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
+		  .formbody{padding:10px 18px;}
+		  .formtitle{border-bottom:solid 1px #d0dee5; line-height:35px; position:relative; height:35px; margin-bottom:28px;}
+   		  .formtitle span{font-weight:bold;font-size:14px; border-bottom:solid 3px #66c9f3;float:left; position:absolute; z-index:100; bottom:-1px; padding:0 3px; height:30px; line-height:30px;}
+		  .forminfo{padding-left:23px;}
+		  .forminfo li{margin-bottom:13px; clear:both;overflow: hidden;}
+		  .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
+		  .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
+		  .forminfo li cite{display:block; padding-top:10px;}
+		  /*page*/
+		  .pagin{position:relative;margin-top:25px;padding:0 12px;}
+		  .pagin .blue{color:#056dae;font-style:normal;}
+		  .pagin .paginList{position: absolute;top: 0;overflow: hidden;left: 50%;margin-left: -150px;}
+		  .pagin .paginList .paginItem{float:left;}
+		  .pagin .paginList .paginItem a{float:left;width:31px;height:28px;border:1px solid #DDD; text-align:center;line-height:30px;border-left:none;color:#3399d5;}
+		  .pagin .paginList .paginItem:first-child a{border-left:1px solid #DDD;}
+		  .pagin .paginList .paginItem:first-child a{border-bottom-left-radius:5px;border-top-left-radius:5px;}
+		  .pagin .paginList .paginItem:last-child a{border-bottom-right-radius:5px;border-top-right-radius:5px;}
+		  .pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a{background:#f5f5f5; cursor:default;color:#737373;}
+		  .pagin .paginList .paginItem a:hover{background:#f5f5f5;}
+		  .pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
+		  .pagin .paginList .paginItem.more:hover{background:#FFF;}
+		  .pagin .paginList .paginItem.more a{color:#737373;}
+		  .pagepre{background:url(/images/pre.gif) no-repeat center center; width:31px; height:28px;}
+		  .pagenxt{background:url(/images/next.gif) no-repeat center center; width:31px; height:28px;}
+		  .pagin .paginList .paginItem span{display: inline-block;margin: 0 10px;}
+		  a{ position: relative; text-decoration: none; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
+		  a em{ display: none; position: absolute; padding: 5px; border: 1px solid #ccc; left: 20px; top: 30px; width: 60px; }
+		  a:hover{border-bottom: 2px solid #ccc;}
+		  a:hover em{ display: block; }
+		</style>
+<script type="text/javascript">
+           /* 添加组 */
+			function open_xg() {
+				$("#xg_select").show();
+			}
+			function close_xg() {
+				$("#xg_select").hide();
+			}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" style="background:">
+	<div class="place">
+		<span>Location:</span>
+		<ul class="placeul">
+			<li><a href="/hsh_backstage/index/" style="color: #056dae;">Home</a></li>
+			<li>Current System</li>
+			<li>Select</li>
+		</ul>
+	</div>
+	<div class="formbody">
+		<ul class="forminfo">
+			<li>
+				<input type="button" class="btn" value="查询" onclick="CurrentSystem.getCurrentSystem(1)" style="float: right;"/>
+				<input id="search_text" type="text" class="dfinput" placeholder="请输入要查询的关键字" style="float: right;" /> 
+			</li>
+		</ul>
+	</div>
+	<!-- 数据 -->
+	<div class="rightinfo">
+		<table class="tablelist" id="table_html">
+			
+		</table>
+		<div class="pagin">
+			<ul class="paginList" id="page_html"></ul>
+		</div>
+	<input type="hidden" id="page" value="1"/>
+	</div>
+	
+	<div class="xg_yc" id="xg_select">
+			<div class="xg" style="margin-left: -42%;height: 530px;width:1100px;margin-top:-280px; overflow:scroll;">
+				<div class="close" onclick="close_xg()">X</div>
+				<div class="ul_lefts">
+					<ul class="forminfo">
+					<li>
+				    <label>产品名称<font class="color_red">*</font></label>
+					<input id="product_name1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px;">产品完整名称<font class="color_red">*</font></label>
+					<input id="product_long_name1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px;">产品类型<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="hsh_category_id1">
+						<option value="1">Solution</option>
+						<option value="2">Storage</option>
+						<option value="3">Server</option>
+						<option value="4">Switch</option>
+						<option value="5">HNAS</option>
+						<option value="6">Software</option>
+						<option value="7">Miscellaneous Systems</option>
+					</select>
+					</label>
+				</li>
+				<li>
+					<label>是否显示<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="product_isshow1">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+					</label>
+					
+					<label style="padding-left:185px;">是否过期<font class="color_red">*</font></label>
+					<label id="lblSelect">
+					<select class="selectPointOfInterest" id="product_eol1">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+					</label>
+				</li>
+				<li>
+					<label>Code Name</label>
+					<input id="code_name1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">GA Date</label>
+					<input id="ga_date1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>System Architecture</label>
+					<input id="system_architecture1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Max Cache</label>
+					<input id="max_cache1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Data Sheet(Block Module)</strong></li>
+				<li>
+					<label>Hight</label>
+					<input id="hight1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Bandwidth</label>
+					<input id="bandwidth1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 190px;">Host Interfaces(maximum)</label>
+					<input id="host_interfaces1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 190px;">Internal Raw Capacity</label>
+					<input id="internal_raw_capacity1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 190px;">Flash Storage Options</label>
+					<input id="flash_storage_options1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 190px;">Hard Disk Drive Options</label>
+					<input id="hard_disk_drive_options1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 250px;">Minimum to Maximum Hard Drices</label>
+					<input id="minimum_to_maximum_hard_drices1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 220px;">Maximum Number Flash Drives</label>
+					<input id="maximum_number_flash_drives1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 250px;">Maximum Number Flash Drives(FMD)</label>
+					<input id="maximum_number_flash_drives_fmd1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="width: 220px; padding-left:65px">Back-End Disk Interface</label>
+					<input id="back_End_disk_interface1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>RAID Configurations</label>
+					<input id="raid_configurations1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Cache Options</label>
+					<input id="cache_options1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label>Maximum LUNs</label>
+					<input id="maximum_luns1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px" >Volume Size</label>
+					<input id="volume_size1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+					<label style="width: 180px;">Virtual Storage Machines</label>
+					<input id="virtual_storage_machines1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 130px;">High Availability</label>
+					<input id="high_availability1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Environment</strong></li>
+				<li>
+				    <label>AC Power</label>
+					<input id="ac_power1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">PDU</label>
+					<input id="pdu1" type="text" class="dfinput" style="float:left;"/>
+					
+				</li>
+				<li>
+					<label>Input Power</label>
+					<input id="input_power1" type="text" class="dfinput" style="float:left;"/>
+					
+				    <label style="padding-left:65px">Temperature</label>
+					<input id="temperature1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>	
+					<label>Humidity</label>
+					<input id="humidity1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Altitude</label>
+					<input id="altitude1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Dimensions and Weights(inch/mm)</strong></li>
+				<li>
+				    <label>Width</label>
+					<input id="width_inch1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Depth</label>
+					<input id="depth_inch1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li>
+				    <label>Height</label>
+					<input id="height_inch1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px; width: 200px;">Max. System Weight(lbs/kg)</label>
+					<input id="system_weight1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				
+				<li>&nbsp;</li>
+				<li><strong>Clearance and Service Access</strong></li>
+				<li>
+				    <label>Front(mm)</label>
+					<input id="front1" type="text" class="dfinput" style="float:left;"/>
+					
+					<label style="padding-left:65px">Rear(mm)</label>
+					<input id="rear1" type="text" class="dfinput" style="float:left;"/>
+				</li>
+				<li style="clear:none;float: left;width: 450px;" id="xg_buttom">
+					<input type="hidden" id="update_id" />
+					<input type="button" onclick="CurrentSystem.submit()" class="btn" value="修改" style="margin-left:0px;margin-top:50px;"/>
+				</li>
+				</ul>
+				</div>
+			</div>
+	</div>
+	<script>
+			function getData(){
+				CurrentSystem.getCurrentSystemList(1);
+			}
+			getData();
+		</script>
+</body>
+</html>
