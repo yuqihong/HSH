@@ -205,3 +205,11 @@ def saveCurrentSystemImage(image_url):
         sql = sql + "%s)"
         params.append(image_url)
     return executeUpdate(sql, params)
+
+#跟据product_id将图片url修改
+def updateCurrentSystemImage(image_url, product_id):
+    params = []
+    sql = " update hsh_product set product_view_url = %s where id = %s "
+    params.append(image_url)
+    params.append(product_id)
+    return executeUpdate(sql, params)

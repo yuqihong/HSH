@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^getCurrentSystem/', CurrentSystemController.getCurrentSystem),
     url(r'^getProductById/', CurrentSystemController.getProductById),
     url(r'^saveCurrentSystemImage/', CurrentSystemController.saveCurrentSystemImage),
+    url(r'^updateCurrentSystemImage/', CurrentSystemController.updateCurrentSystemImage),
 ]

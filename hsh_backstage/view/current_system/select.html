@@ -5,12 +5,11 @@
 <title>HSH Admin</title>
 <link href="/css/demo.css?version={{version}}" rel="stylesheet" type="text/css" />
 <link href="/css/change_select.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/style1.css?version={{version}}" rel="stylesheet" type="text/css" />
 <link href="/css/form.css?version={{version}}" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
-<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
-<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
-<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
-<script type="text/javascript" src="/js/backstage/current_system/select.js?version={{version}}"></script>
+<link rel="stylesheet" type="text/css" href="/css/image_upload/zoom.css"/>
+<!-- 多图片上传 -->
+<link rel="stylesheet" href="/css/image_upload/tinyImgUpload.css" />
 <style>
 html{background:url(/images/bg.png)}
 .tablelist {
@@ -31,7 +30,8 @@ footer {
 	height: 20px;
 	line-height: 20px;
 }
-}
+.over {position: fixed; left:0; top:0; width:100%; z-index:100;}
+.tempContainer {position:fixed; width:100%; margin-right:0px; margin-left:0px; text-align:center; z-index:101;}
 <style>
 		   html,body{height: 100%;}
 		  .red{background:red;}
@@ -117,7 +117,7 @@ footer {
 				    <label>产品名称<font class="color_red">*</font></label>
 					<input id="product_name1" type="text" class="dfinput" style="float:left;"/>
 					
-					<label style="padding-left:65px;">产品完整名称<font class="color_red">*</font></label>
+					<label style="padding-left:65px;width: 110px;">产品完整名称<font class="color_red">*</font></label>
 					<input id="product_long_name1" type="text" class="dfinput" style="float:left;"/>
 					
 					<label style="padding-left:65px;">产品类型<font class="color_red">*</font></label>
@@ -165,6 +165,11 @@ footer {
 					<input id="max_cache1" type="text" class="dfinput" style="float:left;"/>
 				</li>
 				
+				<div id="upload">
+
+				</div>
+				<button id="submit" class="btn">修改图片</button>
+				<label style="padding-left:5px"><font style="color: red;"><strong>(默认空则不修改)</strong></font></label>
 				<li>&nbsp;</li>
 				<li><strong>Data Sheet(Block Module)</strong></li>
 				<li>
@@ -283,11 +288,37 @@ footer {
 				</div>
 			</div>
 	</div>
-	<script>
+		<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/backstage/current_system/select.js?version={{version}}"></script>
+		<script src="/js/image_upload/zoom.js"></script>
+		<script src="/js/basics/jquery.min.js"></script>      
+		<script>
 			function getData(){
 				CurrentSystem.getCurrentSystemList(1);
 			}
 			getData();
+		</script>
+		<!-- 多图片上传 -->
+		<script src="/js/image_upload/tinyImgUpload.js"></script>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth*0.1+'px';
+			var options = {
+			    path: '/hsh_backstage/updateCurrentSystemImage/',
+			    onSuccess: function (res) {
+			        var json = eval('(' + res + ')');
+                    layer.msg('图片修改成功!');
+			    },
+			    onFailure: function (res) {
+			    	layer.msg('图片修改失败!');
+			    }
+			}
+			var upload = tinyImgUpload('#upload', options);
+			document.getElementById('submit').onclick = function (e) {
+			    upload();
+			}
 		</script>
 </body>
 </html>

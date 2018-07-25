@@ -48,7 +48,6 @@ def saveCurrentSystemImage(request):
         with open(img_path,'wb') as  ff:
             for item in f.chunks():
                 ff.write(item)
-    print(file_name1)
     saveImageRow =  CurrentSystemService.saveCurrentSystemImage(file_name1)
     #路径保存到数据库
     respJson = {}
@@ -57,7 +56,34 @@ def saveCurrentSystemImage(request):
     else:
         respJson["ERROR"] = Resp.ERROR
     return HttpResponse(toJson(respJson));
-#先删除hsh_product产品表，再删除hsh_property属性表
+
+#修改图片
+def updateCurrentSystemImage(request):
+    #获取前端上传的图片
+    file = request.FILES.getlist('files')
+    product_id = _post(request, "id")
+    file_name1 = ""
+    
+    #判断是否为空，默认
+    if len(file) == 0:
+        return;
+    for f in file:
+        name = f.name
+        file_name = name.split(".")[0] + "_"+ DateUtil.time_stamp() +"."+ name.split(".")[1]
+        img_path = os.path.join(Resp.IMAGEUPLOAD, file_name)
+        file_name1+="/images/currentsystem_images/" + file_name+","
+    #写入到文件中
+        with open(img_path,'wb') as  ff:
+            for item in f.chunks():
+                ff.write(item)
+    saveImageRow =  CurrentSystemService.updateCurrentSystemImage(file_name1, product_id)
+    #路径保存到数据库
+    respJson = {}
+    if saveImageRow > 0:
+        respJson["product_id"] = saveImageRow
+    else:
+        respJson["ERROR"] = Resp.ERROR
+    return HttpResponse(toJson(respJson));
 @loginVerify
 def delCurrentSystem(request):
     dataJson = json.loads(_post(request, "data"))

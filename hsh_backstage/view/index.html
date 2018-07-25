@@ -8,34 +8,10 @@
 </head>
 
 <body>
-    <div class="mainindex" style="margin-left: 200px;">
-    <div class="welinfo">
-    <span><img src="/images/sun.png" alt="天气" /></span>
-    <b id='text'>Hi</b>
-    </div>
-    
-    <script>
-       var html="";
-       now = new Date(),hour = now.getHours() 
-       if(hour < 6){
-         html=",凌晨好！";
-       } else if (hour < 9){
-         html=",早上好！";
-       } else if (hour < 12){
-         html=",上午好！";
-       } else if (hour < 14){
-         html=",中午好！";
-       }else if (hour < 17){
-         html=",下午好！";
-       } else if (hour < 19){
-         html=",傍晚好！";
-       } else{
-         html=",晚上好！";
-       }
-       html+="欢迎使用HSH .";
-       html=document.getElementById("text").innerText+html;
-       document.getElementById("text").innerText=html;
-    </script>
+    <div class="mainindex" style="margin-left:50px;">
+	    <div class="welinfo">
+	    <b>Hi </b><font style="color: red;">{{request.session.user.user_name}}</font><b>欢迎使用HSH .</b>
+	    </div>
     </div>
 </body>
 </html>
