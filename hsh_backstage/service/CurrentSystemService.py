@@ -184,7 +184,18 @@ def getCurrentSystemList(search_text, page):
             data["pageSize"] = int(int(data["count"]) / Resp.PAGESIZE) + 1
         data["list"] = CurrentSystemDao.SearchProduct(search_text, page)
     return data
-
+def getEOLSystemList(search_text, page):
+    data = {}
+    count = CurrentSystemDao.SearchEOLProductCount(search_text)
+    data["count"] = count[0]["count"]
+    if int(data["count"])>0:
+        if int(data["count"]) % Resp.PAGESIZE==0:
+            data["pageSize"] = int(data["count"]) / Resp.PAGESIZE
+        else:
+            data["pageSize"] = int(int(data["count"]) / Resp.PAGESIZE) + 1
+        data["list"] = CurrentSystemDao.SearchEOLProduct(search_text, page)
+    return data
+    
 #根据产品id返回产品属性的id
 def getPropertyIdByProductId(product_id):
     params = []

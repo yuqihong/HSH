@@ -13,6 +13,10 @@ def getCurrentSystem(request):
     return render(request,'hsh_backstage/view/current_system/select.html')
 
 @loginVerify
+def getEOLSystem(request):
+    return render(request,'hsh_backstage/view/eol_system/select.html')
+
+@loginVerify
 def addMenu(request):
     return render(request,'hsh_backstage/view/current_system/add.html')
 
@@ -136,3 +140,9 @@ def getCurrentSystemList(request):
     json = toJson(CurrentSystemService.getCurrentSystemList(search_text, page))
     return HttpResponse(json)
 
+@loginVerify
+def getEOLSystemList(request):
+    search_text = _post(request, "search_text")
+    page = _post(request, "page")
+    json = toJson(CurrentSystemService.getEOLSystemList(search_text, page))
+    return HttpResponse(json)
