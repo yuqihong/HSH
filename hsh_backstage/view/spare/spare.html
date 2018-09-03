@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HSH Admin</title>
+<link href="/css/demo.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/change_select.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/style1.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link href="/css/form.css?version={{version}}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/css/image_upload/zoom.css"/>
+<style>
+html{background:url(/images/bg.png)}
+.tablelist {
+	border: solid 1px #cbcbcb;
+	width: 100%;
+	clear: both;
+}
+
+footer {
+	align-content: center;
+	position: fixed;
+	background-color: rgba(43, 166, 166, 0.5);
+	color: #FFF;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+}
+.over {position: fixed; left:0; top:0; width:100%; z-index:100;}
+.tempContainer {position:fixed; width:100%; margin-right:0px; margin-left:0px; text-align:center; z-index:101;}
+<style>
+ 		   .tablelist td .table_yc{display:none;position:absolute;right: 0;z-index:999;background:#fff;padding:10px;width:250px;height:200px;border:1px solid #dedede;border-radius:15px;box-shadow:0 0 15px #ccc;}
+           .tablelist td:hover .table_yc {display:block;}
+		   html,body{height: 100%;}
+		  .red{background:red;}
+		  .green{background:green;}
+		  .rightinfo{padding:8px;}
+		  .tools{clear:both; height:35px;margin: 15px 0 25px 0;}
+		  .dfinput{width:240px; height:32px; line-height:32px; border-top:solid 1px #0f8b8d; border-left:solid 1px #0f8b8d; border-right:solid 1px #0f8b8d; border-bottom:solid 1px #0f8b8d; background:url(/images/inputbg.gif) repeat-x; text-indent:10px;}
+		  .btn{width:137px;height:35px; background:#0f8b8d; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
+		  .formbody{padding:10px 18px;}
+		  .formtitle{border-bottom:solid 1px #d0dee5; line-height:35px; position:relative; height:35px; margin-bottom:28px;}
+   		  .formtitle span{font-weight:bold;font-size:14px; border-bottom:solid 3px #66c9f3;float:left; position:absolute; z-index:100; bottom:-1px; padding:0 3px; height:30px; line-height:30px;}
+		  .forminfo{padding-left:23px;}
+		  .forminfo li{margin-bottom:13px; clear:both;overflow: hidden;}
+		  .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
+		  .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
+		  .forminfo li cite{display:block; padding-top:10px;}
+		  /*page*/
+		  .pagin{position:relative;margin-top:25px;padding:0 12px;}
+		  .pagin .blue{color:#056dae;font-style:normal;}
+		  .pagin .paginList{position: absolute;top: 0;overflow: hidden;left: 50%;margin-left: -150px;}
+		  .pagin .paginList .paginItem{float:left;}
+		  .pagin .paginList .paginItem a{float:left;width:31px;height:28px;border:1px solid #DDD; text-align:center;line-height:30px;border-left:none;color:#3399d5;}
+		  .pagin .paginList .paginItem:first-child a{border-left:1px solid #DDD;}
+		  .pagin .paginList .paginItem:first-child a{border-bottom-left-radius:5px;border-top-left-radius:5px;}
+		  .pagin .paginList .paginItem:last-child a{border-bottom-right-radius:5px;border-top-right-radius:5px;}
+		  .pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a{background:#f5f5f5; cursor:default;color:#737373;}
+		  .pagin .paginList .paginItem a:hover{background:#f5f5f5;}
+		  .pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
+		  .pagin .paginList .paginItem.more:hover{background:#FFF;}
+		  .pagin .paginList .paginItem.more a{color:#737373;}
+		  .pagepre{background:url(/images/pre.gif) no-repeat center center; width:31px; height:28px;}
+		  .pagenxt{background:url(/images/next.gif) no-repeat center center; width:31px; height:28px;}
+		  .pagin .paginList .paginItem span{display: inline-block;margin: 0 10px;}
+		  a{ position: relative; text-decoration: none; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
+		  a em{ display: none; position: absolute; padding: 5px; border: 1px solid #ccc; left: 20px; top: 30px; width: 60px; }
+		  a:hover{border-bottom: 2px solid #ccc;}
+		  a:hover em{ display: block; }
+		  .your_class{width:300px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; padding-left: 300px;}
+		</style>
+<script type="text/javascript">
+           /* 添加组 */
+           function open_add() {
+				$("#xg_add").show();
+			}
+			function close_add() {
+				$("#xg_add").hide();
+			}
+			/* 修改组 */
+			function open_xg() {
+				$("#xg_select").show();
+			}
+			function close_xg() {
+				$("#xg_select").hide();
+			}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" style="background:">
+	<div class="place">
+		<span>Location:</span>
+		<ul class="placeul">
+			<li><a href="/hsh_backstage/index/" style="color: #056dae;">Home</a></li>
+			<li>Alert</li>
+		</ul>
+	</div>
+	<div class="formbody">
+		<ul class="forminfo">
+			<li>
+				<input type="button" class="btn" value="添加" onclick="Spare.openAdd();" style="float: right;margin-left: 20px;"/>
+				<input type="button" class="btn" value="查询" onclick="Spare.getSpare(1)" style="float: right;"/>
+				<input id="search_text" type="text" class="dfinput" placeholder="请输入要查询的关键字" style="float: right;" /> 
+			</li>
+		</ul>
+	</div>
+	<!-- 数据 -->
+	<div class="rightinfo">
+		<table class="tablelist" id="table_html">
+			
+		</table>
+		<div class="pagin">
+			<ul class="paginList" id="page_html"></ul>
+		</div>
+	<input type="hidden" id="page" value="1"/>
+	</div>
+	
+	<!-- Add -->
+	<div class="xg_yc" id="xg_add">
+			<div class="xg" style="margin-left: -26%;height: 480px;width:800px;margin-top:-280px; overflow:scroll;">
+				<div class="close" onclick="close_add()">X</div>
+				<div class="ul_lefts">
+					<ul class="forminfo">
+						<li>
+						    <label style="width: 150px;">Spare PN<font class="color_red">*</font></label>
+							<input id="spare_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+							<label style="width: 150px;">Spare Description<font class="color_red">*</font></label>
+							<textarea id="spare_description" class="textinput" style="float:left;"></textarea>
+						</li>
+						<li>
+						    <label style="width: 150px;">Spare Product PN<font class="color_red">*</font></label>
+							<input id="spare_product_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+						    <label style="width: 150px;">Spare Substitue PN<font class="color_red">*</font></label>
+							<input id="spare_substitue_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+							<label style="width: 150px;">Spare Type</label>
+							<select class="selectPointOfInterest" id="spare_type" style="width: 240px;">
+								
+							</select>
+						</li>
+						<li>
+							<label style="width: 150px;">产品</label>
+							<select class="selectPointOfInterest" id="their_product" style="width: 240px;">
+								
+							</select>
+						</li>
+						<li>&nbsp;</li>
+						<li>
+						    <input  type="button" class="btn" value="确认保存" onclick="Spare.submit()" style="float:right;margin-right: 100px;"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+	
+	<!-- Update -->
+	<div class="xg_yc" id="xg_select">
+			<div class="xg" style="margin-left: -33%;height: 480px;width:800px;margin-top:-280px; overflow:scroll;">
+				<div class="close" onclick="close_xg()">X</div>
+				<div class="ul_lefts">
+					<ul class="forminfo">
+						<li>
+						    <label style="width: 150px;">Spare PN<font class="color_red">*</font></label>
+							<input id="update_spare_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+							<label style="width: 150px;">Spare Description<font class="color_red">*</font></label>
+							<textarea id="update_spare_description" class="textinput" style="float:left;"></textarea>
+						</li>
+						<li>
+						    <label style="width: 150px;">Spare Product PN<font class="color_red">*</font></label>
+							<input id="update_spare_product_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+						    <label style="width: 150px;">Spare Substitue PN<font class="color_red">*</font></label>
+							<input id="update_spare_substitue_pn" type="text" class="dfinput" style="float:left;"/>
+						</li>
+						<li>
+							<label style="width: 150px;">Spare Type</label>
+							<select class="selectPointOfInterest" id="update_spare_type" style="width: 240px;">
+								
+							</select>
+						</li>
+						<li>
+							<label style="width: 150px;">产品</label>
+							<select class="selectPointOfInterest" id="update_their_product" style="width: 240px;">
+								
+							</select>
+						</li>
+						<input type="hidden" id="update_spare_id" />
+						<li>&nbsp;</li>
+						<li>
+						    <input type="button" class="btn" value="修改" onclick="Spare.update()"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+		<script type="text/javascript" src="/js/jquery.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/backstage/spare/spare.js?version={{version}}"></script>
+		<script src="/js/basics/jquery.min.js"></script>      
+		<script>
+			function getData(){
+				Spare.getSpareList(1);
+			}
+			getData();
+		</script>
+</body>
+</html>

@@ -16,7 +16,8 @@ Including another URLconf
 # coding=utf-8
 
 from django.conf.urls import url
-from hsh_backstage.controller import MainController, CurrentSystemController
+from hsh_backstage.controller import MainController, CurrentSystemController, AlertController,\
+    SpareController
 
 urlpatterns = [
     url(r'^main/$', MainController.main),
@@ -37,4 +38,21 @@ urlpatterns = [
     url(r'^updateCurrentSystemImage/', CurrentSystemController.updateCurrentSystemImage),
     url(r'^getEOLSystemList/', CurrentSystemController.getEOLSystemList),
     url(r'^getEOLSystem/', CurrentSystemController.getEOLSystem),
+    
+    url(r'^getAlert/', AlertController.getAlert),
+    url(r'^saveAlert/', AlertController.saveAlert),
+    url(r'^getTheirProductList/', AlertController.getTheirProductList),
+    url(r'^getAlertList/', AlertController.getAlertList),
+    url(r'^getUpdateAlert/', AlertController.getUpdateAlert),
+    url(r'^updateAlert/', AlertController.updateAlert),
+    url(r'^delAletrt/', AlertController.delAletrt),
+    
+    url(r'^getSpare/', SpareController.getSpare),
+    url(r'^saveSpare/', SpareController.saveSpare),
+    url(r'^getSpareList/', SpareController.getSpareList),
+    url(r'^getSpareTypeList/', SpareController.getSpareTypeList),
+    url(r'^getUpdateSpare/', SpareController.getUpdateSpare),
+    url(r'^updateSpare/', SpareController.updateSpare),
+    url(r'^delSpare/', SpareController.delSpare),
+    
 ]
