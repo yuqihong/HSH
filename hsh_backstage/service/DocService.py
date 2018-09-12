@@ -1,99 +1,82 @@
 # coding=UTF-8
 from util.BaseDao import executeUpdate, executeQuery
-from hsh_backstage.dao import AlertDao
+from hsh_backstage.dao import DocDao
 from util import Resp
 
-#添加Alert信息
-def addAlert(dataJson):
+#添加Doc信息
+def addDoc(dataJson):
     params = []
-    sql = " insert into hsh_alert("
-    if(dataJson.get("alert_number")!='' and dataJson.get("alert_number")!=None):
-        sql = sql + "alert_number,"
-    if(dataJson.get("alert_detail")!='' and dataJson.get("alert_detail")!=None):
-        sql = sql + "alert_detail"
-    sql = sql + ") values("
-     
-    if(dataJson.get("alert_number")!='' and dataJson.get("alert_number")!=None):
-        sql = sql + "%s,"
-        params.append(dataJson.get("alert_number"))
-    if(dataJson.get("alert_detail")!='' and dataJson.get("alert_detail")!=None):
-        sql = sql + "%s)"
-        params.append(dataJson.get("alert_detail"))
-    return executeUpdate(sql, params)
+    data = [dataJson["doc_title"], dataJson["doc_url"]]
+    sql = " insert INTO hsh_doc (doc_title, doc_url) VALUES (%s, %s) "
+    params.append(dataJson["doc_title"])
+    params.append(dataJson["doc_url"])
+    return executeUpdate(sql, data)
 
 #获取所有产品的信息
-def getTheirProductList():
+def getProductList():
     params = []
-    sql = "SELECT id, product_name, product_long_name  from hsh_product"
+    sql = " SELECT id, product_name, product_long_name FROM hsh_product "
     return executeQuery(sql, params, "")
 
-#保存alertAndproduct中间表信息
-def addAlertAndProduct(addAlertRow, product_id):
-    params = []
-    sql = " insert into hsh_product_alert("
-    if(addAlertRow!='' and addAlertRow!=None):
-        sql = sql + "alert_id,"
-    if(product_id!='' and product_id!=None):
-        sql = sql + "product_id"
-    sql = sql + ") values("
-     
-    if(addAlertRow!='' and addAlertRow!=None):
-        sql = sql + "%s,"
-        params.append(addAlertRow)
-    if(product_id!='' and product_id!=None):
-        sql = sql + "%s)"
-        params.append(product_id)
-    return executeUpdate(sql, params)
+#保存docAndproduct中间表信息
+def addDocAndProduct(doc_id, product_id):
+    data = [doc_id, product_id]
+    sql = """ INSERT INTO hsh_product_doc (doc_id, product_id) VALUES (%s, %s) """
+    return executeUpdate(sql, data)
 
-#查找Alert
-def getAlertList(search_text, page):
+#查找Doc
+def getDocList(search_text, page):
     data = {}
-    count = AlertDao.SearchAlertCount(search_text)
-    data["count"] = count[0]["count"]
-    if int(data["count"])>0:
-        if int(data["count"]) % Resp.PAGESIZE==0:
-            data["pageSize"] = int(data["count"]) / Resp.PAGESIZE
+    count = DocDao.SearchDocCount(search_text)
+    data["count"] = int(count[0]["count"])
+    if data["count"] > 0:
+        if data["count"] % Resp.PAGESIZE == 0:
+            data["pageSize"] = data["count"] / Resp.PAGESIZE
         else:
-            data["pageSize"] = int(int(data["count"]) / Resp.PAGESIZE) + 1
-        data["list"] = AlertDao.SearchAlert(search_text, page)
+            data["pageSize"] = int(data["count"] / Resp.PAGESIZE) + 1
+        data["list"] = DocDao.SearchDoc(search_text, page)
     return data
 
-#根据id获取alert信息
-def getUpdateAlert(alert_id):
-    params = []
-    sql = """ select a.id,a.alert_number, a.alert_detail, ta.product_name, ta.id as product_id
-                from hsh_alert a inner join hsh_product ta inner join hsh_product_alert t on a.id = t.alert_id and ta.id = t.product_id 
-                where a.id = %s"""
-    params.append(alert_id)
+#通过doc_title,doc_url查找doc_id
+def getDocid(doc_title, doc_url):
+    params = [doc_title, doc_url]
+    sql = " SELECT id, doc_title, doc_url FROM hsh_doc WHERE doc_title=%s AND doc_url=%s "
+    return executeQuery(sql, params, "")
+
+#根据id获取doc信息
+def getUpdateDoc(doc_id):
+    params = [doc_id]
+    sql = """ SELECT id, doc_title, doc_url, (SELECT hpd.id FROM hsh_product_doc h INNER JOIN hsh_product hpd on h.product_id=hpd.id  
+                WHERE h.doc_id=ha.id) AS product_id from hsh_doc ha where ha.id=%s """
     return executeQuery(sql, params, "")
 
 #更新中间表
-def updateProductIdByAlertId(alert_id, product_id):
-    params = []
-    sql = """ update hsh_product_alert set product_id = %s where alert_id = %s """
-    params.append(product_id)
-    params.append(alert_id)
-    return executeUpdate(sql, params)
-#更新alert
-def updateAlert(dataJson):
-    params = []
-    sql = """ update hsh_alert set alert_number = %s, alert_detail = %s where id = %s """
-    params.append(dataJson.get("alert_number"))
-    params.append(dataJson.get("alert_detail"))
-    params.append(dataJson.get("alert_id"))
+def updateProductIdByDocId(product_id, doc_id):
+    params = [product_id, doc_id]
+    sql = """ UPDATE hsh_product_doc SET product_id=%s WHERE doc_id=%s """
     return executeUpdate(sql, params)
 
-#根据alert_id删除中间表信息
-def delModdinByAlertId(alert_id):
-    params = []
-    sql = """ DELETE from hsh_product_alert  where alert_id = %s """
-    params.append(alert_id)
+#更新doc
+def updateDoc(dataJson):
+    params = [dataJson["doc_title"], dataJson["doc_url"], dataJson["doc_id"]]
+    sql = """ UPDATE hsh_doc SET doc_title=%s, doc_url=%s WHERE id=%s """
     return executeUpdate(sql, params)
 
-#根据alert_id删除alert信息
-def delAlert(alert_id):
-    params = []
-    sql = """ DELETE from hsh_alert  where id = %s """
-    params.append(alert_id)
+#根据doc_id删除中间表信息
+def delModdinByDocId(doc_id):
+    params = [doc_id]
+    sql = """ DELETE FROM hsh_product_doc WHERE doc_id=%s """
     return executeUpdate(sql, params)
+
+#根据doc_id删除doc信息
+def delDoc(doc_id):
+    params = [doc_id]
+    sql = """ DELETE FROM hsh_doc WHERE id=%s """
+    return executeUpdate(sql, params)
+
+#根据docId查询中间表信息
+def getModdByDocId(doc_id):
+    params = [doc_id]
+    sql = " SELECT product_id from hsh_product_doc where doc_id=%s "
+    return executeQuery(sql, params, "")
 

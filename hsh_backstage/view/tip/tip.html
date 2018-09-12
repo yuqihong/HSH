@@ -69,7 +69,7 @@ footer {
 		  a em{ display: none; position: absolute; padding: 5px; border: 1px solid #ccc; left: 20px; top: 30px; width: 60px; }
 		  a:hover{border-bottom: 2px solid #ccc;}
 		  a:hover em{ display: block; }
-		  .your_class{width:300px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; padding-left: 300px;}
+		  .your_class{width:300px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; padding-left: 350px;}
 		</style>
 <script type="text/javascript">
            /* 添加组 */
@@ -93,14 +93,14 @@ footer {
 		<span>Location:</span>
 		<ul class="placeul">
 			<li><a href="/hsh_backstage/index/" style="color: #056dae;">Home</a></li>
-			<li>Alert</li>
+			<li>Tip</li>
 		</ul>
 	</div>
 	<div class="formbody">
 		<ul class="forminfo">
 			<li>
-				<input type="button" class="btn" value="添加" onclick="Alert.openAdd();" style="float: right;margin-left: 20px;"/>
-				<input type="button" class="btn" value="查询" onclick="Alert.getAlert(1)" style="float: right;"/>
+				<input type="button" class="btn" value="添加" onclick="Tip.openAdd();" style="float: right;margin-left: 20px;"/>
+				<input type="button" class="btn" value="查询" onclick="Tip.getTip(1)" style="float: right;"/>
 				<input id="search_text" type="text" class="dfinput" placeholder="请输入要查询的关键字" style="float: right;" /> 
 			</li>
 		</ul>
@@ -123,12 +123,8 @@ footer {
 				<div class="ul_lefts">
 					<ul class="forminfo">
 						<li>
-						    <label style="width: 130px;">Alert Number<font class="color_red">*</font></label>
-							<input id="alert_number" type="text" class="dfinput" style="float:left;"/>
-						</li>
-						<li>
-							<label style="width: 130px;">Alert Details<font class="color_red">*</font></label>
-							<textarea id="alert_detail" class="textinput" style="float:left;"></textarea>
+							<label style="width: 130px;">Tip Details<font class="color_red">*</font></label>
+							<textarea id="tip_detail" class="textinput" style="float:left;"></textarea>
 						</li>
 						<li>
 							<label style="width: 130px;">产品</label>
@@ -138,7 +134,7 @@ footer {
 						</li>
 						<li>&nbsp;</li>
 						<li>
-						    <input  type="button" class="btn" value="确认保存" onclick="Alert.submit()" style="float:right;margin-right: 100px;"/>
+						    <input  type="button" class="btn" value="确认保存" onclick="Tip.submit()" style="float:right;margin-right: 100px;"/>
 						</li>
 					</ul>
 				</div>
@@ -152,14 +148,10 @@ footer {
 				<div class="ul_lefts">
 					<ul class="forminfo">
 						<li>
-						    <label style="width: 130px;">Alert Number<font class="color_red">*</font></label>
-							<input id="update_alert_number" type="text" class="dfinput" style="float:left;"/>
+							<label style="width: 130px;">Tip Details<font class="color_red">*</font></label>
+							<textarea id="update_tip_detail" class="textinput" style="float:left;"></textarea>
 						</li>
-						<li>
-							<label style="width: 130px;">Alert Details<font class="color_red">*</font></label>
-							<textarea id="update_alert_detail" class="textinput" style="float:left;"></textarea>
-						</li>
-						<input type="hidden" id="update_alert_id"/>
+						<input type="hidden" id="update_tip_id"/>
 						<li>
 							<label style="width: 130px;">产品</label>
 							<select class="selectPointOfInterest" id="update_their_product" style="width: 240px;">
@@ -168,7 +160,7 @@ footer {
 						</li>
 						<li>&nbsp;</li>
 						<li>
-						    <input type="button" class="btn" value="修改" onclick="Alert.update()"/>
+						    <input type="button" class="btn" value="修改" onclick="Tip.update()"/>
 						</li>
 					</ul>
 				</div>
@@ -178,11 +170,11 @@ footer {
 		<script type="text/javascript" src="/js/public.js?version={{version}}"></script>
 		<script type="text/javascript" src="/js/layer/layer.js?version={{version}}"></script>
 		<script type="text/javascript" src="/js/laydate/laydate.js?version={{version}}"></script>
-		<script type="text/javascript" src="/js/backstage/alert/alert.js?version={{version}}"></script>
+		<script type="text/javascript" src="/js/backstage/tip/tip.js?version={{version}}"></script>
 		<script src="/js/basics/jquery.min.js"></script>      
 		<script>
 			function getData(){
-				Alert.getAlertList(1);
+				Tip.getTipList(1);
 			}
 			getData();
 		</script>

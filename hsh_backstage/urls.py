@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.conf.urls import url
 from hsh_backstage.controller import MainController, CurrentSystemController, AlertController,\
-    SpareController
+    SpareController, TipController, DocController
 
 urlpatterns = [
     url(r'^main/$', MainController.main),
@@ -54,5 +54,21 @@ urlpatterns = [
     url(r'^getUpdateSpare/', SpareController.getUpdateSpare),
     url(r'^updateSpare/', SpareController.updateSpare),
     url(r'^delSpare/', SpareController.delSpare),
+    
+    url(r'^getTip/$', TipController.getTip),
+    url(r'^getTipList/$',TipController.getTipList),
+    url(r'^getUpdateTip/', TipController.getUpdateTip),
+    url(r'^getTheirProductTip/', TipController.getTheirProductTip),
+    url(r'^updateTip/', TipController.updateTip),
+    url(r'^saveTip/', TipController.saveTip),
+    url(r'^delTip/', TipController.delTip),
+    
+    url(r'^getDoc/', DocController.getDoc),
+    url(r'^getDocList/', DocController.getDocList),
+    url(r'^getProductList/', DocController.getProductList),
+    url(r'^saveDoc/', DocController.saveDoc),
+    url(r'^getUpdateDoc/', DocController.getUpdateDoc),
+    url(r'^updateDoc/', DocController.updateDoc),
+    url(r'^delDoc/', DocController.delDoc)
     
 ]

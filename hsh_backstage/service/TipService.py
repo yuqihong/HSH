@@ -1,99 +1,97 @@
 # coding=UTF-8
 from util.BaseDao import executeUpdate, executeQuery
-from hsh_backstage.dao import AlertDao
+from hsh_backstage.dao import TipDao
 from util import Resp
 
-#添加Alert信息
-def addAlert(dataJson):
+#添加tip信息
+def addTip(dataJson):
     params = []
-    sql = " insert into hsh_alert("
-    if(dataJson.get("alert_number")!='' and dataJson.get("alert_number")!=None):
-        sql = sql + "alert_number,"
-    if(dataJson.get("alert_detail")!='' and dataJson.get("alert_detail")!=None):
-        sql = sql + "alert_detail"
-    sql = sql + ") values("
-     
-    if(dataJson.get("alert_number")!='' and dataJson.get("alert_number")!=None):
-        sql = sql + "%s,"
-        params.append(dataJson.get("alert_number"))
-    if(dataJson.get("alert_detail")!='' and dataJson.get("alert_detail")!=None):
+    sql = " insert into hsh_tip("
+    if(dataJson.get("tip_detail")!='' and dataJson.get("tip_detail")!=None):
+        sql = sql + "tip_detail"
+    sql = sql + ") values("  
+    if(dataJson.get("tip_detail")!='' and dataJson.get("tip_detail")!=None):
         sql = sql + "%s)"
-        params.append(dataJson.get("alert_detail"))
+        params.append(dataJson.get("tip_detail"))
     return executeUpdate(sql, params)
 
 #获取所有产品的信息
-def getTheirProductList():
+def getTheirProductTip():
     params = []
     sql = "SELECT id, product_name, product_long_name  from hsh_product"
     return executeQuery(sql, params, "")
 
-#保存alertAndproduct中间表信息
-def addAlertAndProduct(addAlertRow, product_id):
+#保存tipAndproduct中间表信息
+def addTipAndProduct(addTipRow, product_id):
     params = []
-    sql = " insert into hsh_product_alert("
-    if(addAlertRow!='' and addAlertRow!=None):
-        sql = sql + "alert_id,"
+    sql = " insert into hsh_product_tip("
+    if(addTipRow!='' and addTipRow!=None):
+        sql = sql + "tip_id,"
     if(product_id!='' and product_id!=None):
         sql = sql + "product_id"
     sql = sql + ") values("
      
-    if(addAlertRow!='' and addAlertRow!=None):
+    if(addTipRow!='' and addTipRow!=None):
         sql = sql + "%s,"
-        params.append(addAlertRow)
+        params.append(addTipRow)
     if(product_id!='' and product_id!=None):
         sql = sql + "%s)"
         params.append(product_id)
     return executeUpdate(sql, params)
 
-#查找Alert
-def getAlertList(search_text, page):
+#查找tip
+def getTipList(search_text, page):
     data = {}
-    count = AlertDao.SearchAlertCount(search_text)
+    count = TipDao.SearchTipCount(search_text)
     data["count"] = count[0]["count"]
     if int(data["count"])>0:
         if int(data["count"]) % Resp.PAGESIZE==0:
             data["pageSize"] = int(data["count"]) / Resp.PAGESIZE
         else:
             data["pageSize"] = int(int(data["count"]) / Resp.PAGESIZE) + 1
-        data["list"] = AlertDao.SearchAlert(search_text, page)
+        data["list"] = TipDao.SearchTip(search_text, page)
     return data
 
-#根据id获取alert信息
-def getUpdateAlert(alert_id):
+#根据id获取tip信息
+def getUpdateTip(tip_id):
     params = []
-    sql = """ select a.id,a.alert_number, a.alert_detail, ta.product_name, ta.id as product_id
-                from hsh_alert a inner join hsh_product ta inner join hsh_product_alert t on a.id = t.alert_id and ta.id = t.product_id 
-                where a.id = %s"""
-    params.append(alert_id)
+    sql = """ SELECT *,(SELECT hpd.id FROM hsh_product_tip h INNER JOIN hsh_product hpd ON h.product_id=hpd.id  
+                WHERE h.tip_id=ha.id) product_id FROM hsh_tip ha WHERE ha.id = %s"""
+    params.append(tip_id)
     return executeQuery(sql, params, "")
 
 #更新中间表
-def updateProductIdByAlertId(alert_id, product_id):
+def updateProductIdByTipId(tip_id, product_id):
     params = []
-    sql = """ update hsh_product_alert set product_id = %s where alert_id = %s """
+    sql = """ update hsh_product_tip set product_id = %s where tip_id = %s """
     params.append(product_id)
-    params.append(alert_id)
+    params.append(tip_id)
     return executeUpdate(sql, params)
-#更新alert
-def updateAlert(dataJson):
+#更新tip
+def updateTip(dataJson):
     params = []
-    sql = """ update hsh_alert set alert_number = %s, alert_detail = %s where id = %s """
-    params.append(dataJson.get("alert_number"))
-    params.append(dataJson.get("alert_detail"))
-    params.append(dataJson.get("alert_id"))
+    sql = """ update hsh_tip set  tip_detail = %s where id = %s """
+    params.append(dataJson.get("tip_detail"))
+    params.append(dataJson.get("tip_id"))
     return executeUpdate(sql, params)
 
-#根据alert_id删除中间表信息
-def delModdinByAlertId(alert_id):
+#根据tip_id删除中间表信息
+def delModdinByTipId(tip_id):
     params = []
-    sql = """ DELETE from hsh_product_alert  where alert_id = %s """
-    params.append(alert_id)
+    sql = """ DELETE from hsh_product_tip  where tip_id = %s """
+    params.append(tip_id)
     return executeUpdate(sql, params)
 
-#根据alert_id删除alert信息
-def delAlert(alert_id):
+#根据tip_id删除tip信息
+def delTip(tip_id):
     params = []
-    sql = """ DELETE from hsh_alert  where id = %s """
-    params.append(alert_id)
+    sql = """ DELETE from hsh_tip  where id = %s """
+    params.append(tip_id)
     return executeUpdate(sql, params)
 
+#根据tipId查询中间表信息
+def getModdByTipId(tip_id):
+    params = []
+    sql = " SELECT product_id from hsh_product_tip where tip_id = %s"
+    params.append(tip_id)
+    return executeQuery(sql, params, "")
